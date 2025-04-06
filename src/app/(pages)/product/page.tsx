@@ -1,4 +1,3 @@
-import Link from "next/link";
 import SingleProduct from "./single-product";
 import { API_BASE } from "@/config/api-config";
 
