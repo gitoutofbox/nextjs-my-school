@@ -8,8 +8,13 @@ const nextConfig: NextConfig = {
   redirects: async () => {
     return [
       {
+        source: "/",
+        destination: "/product",
+        permanent: true
+      },
+      {
         source: "/home",
-        destination: "/",
+        destination: "/product",
         permanent: true
       }
     ];
