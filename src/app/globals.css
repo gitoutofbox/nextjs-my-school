@@ -27,7 +27,7 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
   grid-template-columns: 1fr; /* Single column for main content */
-  height: 100vh; /* Ensure full viewport height */
+  min-height: 100vh; /* Ensure full viewport height */
   margin: 0; /* Reset default body margin */
 }
 
