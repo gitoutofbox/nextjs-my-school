@@ -41,14 +41,14 @@ header, footer {
 }
 
 main {
-  border: 1px solid #ccc; /* Optional border for main content */
   display: flex; /* Flexbox for main content area */
   flex-direction: row; /* Arrange sidebar and content horizontally */
-  height: 100%; /* Ensure main content takes up the full height */
+  /* height: 100%; /* Ensure main content takes up the full height */
+  min-height: 100vh;
 }
 
 aside {
-  width: 400px; /* Set sidebar width */
+  width: 250px; /* Set sidebar width */
   background-color: lightblue; /* For visual example */
   position: sticky;
   top: 40px; /* Stick to the top of the viewport */

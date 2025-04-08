@@ -1,1 +1,2 @@
 export const API_BASE = process.env.NODE_ENV === 'production' ? 'https://jsonplaceholder.typicode.com' : 'https://jsonplaceholder.typicode.com'
+export const API_BASE_MONGO = 'http://localhost:3000/api';
