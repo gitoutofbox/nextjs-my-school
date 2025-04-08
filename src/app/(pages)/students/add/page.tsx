@@ -3,12 +3,12 @@
 import { API_BASE_MONGO } from "@/config/api-config";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 export default function AddStudent() {
     const router = useRouter();
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = (data: any) => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data: FieldValues) => {
         console.log(data);
         fetch(`${API_BASE_MONGO}/student`, {
             method: 'POST',

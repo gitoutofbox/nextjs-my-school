@@ -7,3 +7,14 @@ export interface Student {
     createdAt: string;
     updatedAt: string;
 }
+
+//  export interface StudentData {
+//         name: string;
+//         roll: string;
+//         email: string;
+//         class: string;
+//         section: string;
+//         phone?: string;
+//         address?: string;
+//         dob: string;
+//     }

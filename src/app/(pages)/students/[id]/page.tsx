@@ -3,20 +3,18 @@
 import { API_BASE_MONGO } from "@/config/api-config";
 import { ParamValue } from "next/dist/server/request/params";
 import Link from "next/link";
-// import { useRouter } from "next/router";
 import { useParams, useRouter } from 'next/navigation';
 
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 export default function EditStudent() {
     const params = useParams();
     const router = useRouter();
-    // const id = router.query.id;
-    // 
+    
     const id = params.id;
     console.log(id);
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     
 
     useEffect(() => {
@@ -33,7 +31,9 @@ export default function EditStudent() {
         fetchStudent(id);
     }, [id]);
     
-    const onSubmit = (data: any) => {
+   
+
+    const onSubmit = (data: FieldValues) => {
         console.log(data);
         fetch(`${API_BASE_MONGO}/student`, {
             method: 'PUT',
