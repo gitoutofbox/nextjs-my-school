@@ -2,6 +2,8 @@ import { API_BASE_MONGO } from "@/config/api-config";
 import { Student } from "./student.interface";
 import Link from "next/link";
 import DeleteStudentBtn from "./delete-student-btn";
+import { imageLoader } from "@/app/lib/public-image-loader";
+import Image from "next/image";
 
 async function fetchStudents() {
     const res = await fetch(`${API_BASE_MONGO}/student`, {
@@ -26,7 +28,7 @@ export default async function StudentsPage() {
 
     return (
         <div className="flex flex-col gap-4">
-            
+
             <div className="flex gap-2 width-full">
                 <div className="flex-1"><h1 className="text-2xl font-bold">Students</h1></div>
                 <div className="justify-self-end">
@@ -35,8 +37,11 @@ export default async function StudentsPage() {
             </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="card">
                         <tr>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Photo
+                            </th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Roll
                             </th>
@@ -60,7 +65,7 @@ export default async function StudentsPage() {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="card divide-y divide-gray-200">
                         {
                             !students || !students.length && <tr>
                                 <td colSpan={7} className="text-center px-6 py-4 whitespace-nowrap text-sm text-gray-900">No records found</td>
@@ -69,14 +74,26 @@ export default async function StudentsPage() {
                         {
                             students && students.map((item: Student) => (
                                 <tr key={item._id}>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.roll}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.class}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.section}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{new Date(item.createdAt).toLocaleDateString()}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{new Date(item.updatedAt).toLocaleDateString()}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        <Link href={`students/${item._id}`} className="text-blue-500 hover:text-blue-900 cursor-pointer">Edit</Link>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        {
+                                            item.photo ?
+                                                <Image
+                                                    loader={imageLoader}
+                                                    src={item.photo} alt="Student Photo" width={70} height={50} />
+                                                :
+                                                <Image
+                                                    loader={imageLoader}
+                                                    src="default.jpg" alt="Student Photo" width={120} height={70} />
+                                        }
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{item.roll}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{item.name}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{item.class}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{item.section}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{new Date(item.createdAt).toLocaleDateString()}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">{new Date(item.updatedAt).toLocaleDateString()}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm ">
+                                        <Link href={`students/${item._id}`} className="force-keep-text-color text-blue-500 hover:text-blue-900 cursor-pointer mr-2">Edit</Link>
                                         <DeleteStudentBtn studentId={item._id} />
                                     </td>
                                 </tr>

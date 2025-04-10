@@ -1,5 +1,6 @@
 export interface Student {
     _id: string;
+    photo: string;
     roll: string;
     name: string;
     class: string;

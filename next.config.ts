@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: []
+    domains: [],
+    // loader: "akamai",
+    path: "/",
   },
   // output: "export",
   redirects: async () => {

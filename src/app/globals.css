@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  .card {
+    background: var(--color-gray-50);
+    color: var(--color-gray-900);
+  }
 }
 
 @theme inline {
@@ -16,6 +20,13 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    a:not(.force-keep-text-color) {
+      color: #fff;
+    }
+    .card {
+      background: var(--color-gray-800);
+      color: var(--color-gray-400);
+    }
   }
 }
 
@@ -32,9 +43,9 @@ body {
 }
 
 header {
-  position: sticky;
+  /* position: sticky; */
   top:0;
-  height: 40px;
+  height: 60px;
 }
 header, footer {
   /* Add styling for header and footer here */
@@ -49,7 +60,6 @@ main {
 
 aside {
   width: 250px; /* Set sidebar width */
-  background-color: lightblue; /* For visual example */
   position: sticky;
   top: 40px; /* Stick to the top of the viewport */
   padding: 20px;

@@ -1,17 +1,12 @@
-import { Roboto } from "next/font/google";
-const roboto = Roboto({
-	subsets: ["latin"],
-	weight: ["100"],
-	style: ["italic"],
-	display: "swap",
-});
+import { robotoItalic } from "./lib/roboto-roboto";
+
 export default function Home() {
 
 	return (
 		<main className="flex min-h-screen flex-col p-6">
 			<div>
 
-				<h1 className={roboto.className}>Home</h1>
+				<h1 className={robotoItalic.className}>Home</h1>
 			</div>
 		</main>
 	);
