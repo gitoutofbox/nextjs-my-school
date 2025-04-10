@@ -47,7 +47,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     let studentPhoto = '';
     const photo = formData.get("photo");
     if(photo) {
-        console.log('AAAAAAAAA', photo)
+       
         if (photo instanceof File) {
             const uuid = uuidv4();
             const photoByte = await photo.arrayBuffer();
@@ -55,6 +55,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
             const newPhotoName = `${uuid}_${photo.name}`;
             const photoPath = `public/student-photos/${newPhotoName}`;
             await writeFile(photoPath, photoBuffer);
+            console.log('AAAAAAAAA newPhotoName =', newPhotoName)
             studentPhoto =  newPhotoName;
     } 
     else {
