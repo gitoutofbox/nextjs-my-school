@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [],
+    domains: [
+      'vercel.com'
+    ],
     // loader: "akamai",
     path: "/",
   },
