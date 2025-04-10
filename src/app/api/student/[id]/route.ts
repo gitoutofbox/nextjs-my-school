@@ -53,7 +53,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
             const photoByte = await photo.arrayBuffer();
             const photoBuffer = Buffer.from(photoByte);
             const newPhotoName = `${uuid}_${photo.name}`;
-            const photoPath = `./public/student-photos/${newPhotoName}`;
+            const photoPath = `public/student-photos/${newPhotoName}`;
             await writeFile(photoPath, photoBuffer);
             studentPhoto =  newPhotoName;
     } 
