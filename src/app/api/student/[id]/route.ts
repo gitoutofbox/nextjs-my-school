@@ -56,6 +56,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
             studentPhoto =  newPhotoName;
     } 
     else {
+        console.log("Invalid photo format", formData.get("photo"));
         studentPhoto = formData.get("photo") as string;
         // throw new Error("Invalid photo format");
     }

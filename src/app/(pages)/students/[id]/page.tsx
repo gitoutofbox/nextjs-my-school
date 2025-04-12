@@ -40,9 +40,16 @@ export default function EditStudent() {
 
 
     const onSubmit = (data: FieldValues) => {
-        data.photo = data.photo[0];
         const formData = new FormData();
-        formData.set("photo", data.photo);
+
+      
+        if (data.photo instanceof FileList && data.photo.length > 0) {
+            formData.set("photo", data.photo[0]);
+        } else {
+            formData.set("photo", data.photo);
+        }
+       
+        
         formData.append("name", data.name);
         formData.append("email", data.email);
         formData.append("phone", data.phone);
@@ -98,8 +105,8 @@ export default function EditStudent() {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="mb-4">
+ 
+                        <div className="mb-4 hidde1n">
                             <label htmlFor="photo" className="block text-sm font-medium" ref={photoRef}>
                                 Photo
                             </label>
