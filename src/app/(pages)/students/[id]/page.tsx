@@ -257,10 +257,3 @@ export default function EditStudent() {
         </div>
     );
 }
-
-export function generateMetadata() {    
-    return {
-		title: "Student Edit",
-		description: "Student edit page",
-	};
-}
