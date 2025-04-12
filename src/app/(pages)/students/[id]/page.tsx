@@ -101,6 +101,7 @@ export default function EditStudent() {
                                             src="default.jpg" alt="Student Photo" width={120} height={70} />
                                 }
                                 <div>
+                                    <div className="text-orange-300">versel does not provide permission to uplaod file</div>
                                     {errors.photo && <span className="text-red-500 text-sm">This field is required</span>}
                                 </div>
                             </div>
