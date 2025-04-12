@@ -42,14 +42,14 @@ export default function EditStudent() {
     const onSubmit = (data: FieldValues) => {
         const formData = new FormData();
 
-      
+
         if (data.photo instanceof FileList && data.photo.length > 0) {
             formData.set("photo", data.photo[0]);
         } else {
             formData.set("photo", data.photo);
         }
-       
-        
+
+
         formData.append("name", data.name);
         formData.append("email", data.email);
         formData.append("phone", data.phone);
@@ -90,7 +90,8 @@ export default function EditStudent() {
                         <div className="flex">
                             <h2 className={`text-2xl mb-6 ${robotoItalic.className}`}>Student Personal Details</h2>
                             <div className="justify-end flex-1 flex items-center cursor-pointer" onClick={uploadImage}>
-                                {
+                                <div>
+                                    {
                                     getValues('photo') ?
                                         <Image
                                             loader={imageLoader}
@@ -100,13 +101,14 @@ export default function EditStudent() {
                                             loader={imageLoader}
                                             src="default.jpg" alt="Student Photo" width={120} height={70} />
                                 }
+                                </div>
                                 <div>
                                     <div className="text-orange-300">versel does not provide permission to uplaod file</div>
                                     {errors.photo && <span className="text-red-500 text-sm">This field is required</span>}
                                 </div>
                             </div>
                         </div>
- 
+
                         <div className="mb-4 hidde1n">
                             <label htmlFor="photo" className="block text-sm font-medium" ref={photoRef}>
                                 Photo
