@@ -109,7 +109,7 @@ export default function EditStudent() {
                             </div>
                         </div>
 
-                        <div className="mb-4 hidde1n">
+                        <div className="mb-4 hidden">
                             <label htmlFor="photo" className="block text-sm font-medium" ref={photoRef}>
                                 Photo
                             </label>
