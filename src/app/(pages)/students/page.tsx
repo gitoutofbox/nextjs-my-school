@@ -105,3 +105,11 @@ export default async function StudentsPage() {
         </div>
     )
 }
+
+
+export function generateMetadata() {    
+    return {
+		title: "Student List",
+		description: "Student list page",
+	};
+}
