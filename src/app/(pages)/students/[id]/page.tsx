@@ -86,7 +86,7 @@ export default function EditStudent() {
             <h1 className={`text-4xl mb-6 ${robotoItalic.className}`}>Update Student</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex gap-4">
-                    <div className="flex-1 card border rounded-md p-4 mb-4">
+                    <div className="flex-1 card border border-gray-400 rounded-md p-4 mb-4">
                         <div className="flex">
                             <h2 className={`text-2xl mb-6 ${robotoItalic.className}`}>Student Personal Details</h2>
                             <div className="justify-end flex-1 flex items-center cursor-pointer" onClick={uploadImage}>
@@ -195,7 +195,7 @@ export default function EditStudent() {
                         </div>
                     </div>
 
-                    <div className="flex-1 card border rounded-md p-4 mb-4">
+                    <div className="flex-1 card border border-gray-400 rounded-md p-4 mb-4">
                         <h2 className={`text-2xl mb-6 ${robotoItalic.className}`}>Student School Details</h2>
                         <div className="mb-4">
                             <label htmlFor="class" className="block text-sm font-medium">
