@@ -13,12 +13,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: "/product",
+        destination: "/students",
         permanent: true
       },
       {
         source: "/home",
-        destination: "/product",
+        destination: "/students",
         permanent: true
       }
     ];
