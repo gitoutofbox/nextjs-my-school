@@ -50,7 +50,9 @@ export default function AddStudent() {
                                
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             />
-                            <div className="text-orange-300">versel does not provide permission to uplaod file</div>
+                            {process.env.NODE_ENV !== 'development' && (
+                                <div className="text-orange-300">Vercel does not provide permission to upload files</div>
+                            )}
                             {errors.name && <span className="text-red-500 text-sm">This field is required</span>}
                         </div>
 

@@ -106,7 +106,9 @@ export default function EditStudent() {
                             </div>
                         </div>
                         <div>
-                            <div className="text-orange-300">versel does not provide permission to uplaod file</div>
+                            {process.env.NODE_ENV !== 'development' && (
+                                <div className="text-orange-300">Vercel does not provide permission to upload files</div>
+                            )}
                             {errors.photo && <span className="text-red-500 text-sm">This field is required</span>}
                         </div>
 

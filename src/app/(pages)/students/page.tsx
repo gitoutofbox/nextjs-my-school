@@ -4,6 +4,8 @@ import Link from "next/link";
 import DeleteStudentBtn from "./delete-student-btn";
 import { imageLoader } from "@/app/lib/public-image-loader";
 import Image from "next/image";
+import { robotoItalic } from "@/app/lib/roboto-roboto";
+import { Filters } from "./components/filters";
 
 async function fetchStudents() {
     const res = await fetch(`${API_BASE_MONGO}/student`, {
@@ -30,12 +32,17 @@ export default async function StudentsPage() {
         <div className="flex flex-col gap-4">
 
             <div className="flex gap-2 width-full">
-                <div className="flex-1"><h1 className="text-2xl font-bold">Students</h1></div>
+                <div className="flex-1">
+                    <h1 className={`text-4xl font-bold ${robotoItalic.className}`}>Students</h1>
+                    <h2 className={`text-2xl font-extralight`}>Total Records: 300</h2>
+                    </div>
                 <div className="justify-self-end">
                     <Link href={`students/add`} className="text-blue-500 hover:text-blue-900 float-right">+ Add Student</Link>
                 </div>
             </div>
+            
             <div className="overflow-x-auto">
+            <Filters />
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="card">
                         <tr>
