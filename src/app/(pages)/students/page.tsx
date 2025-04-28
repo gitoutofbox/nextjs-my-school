@@ -7,10 +7,10 @@ import Image from "next/image";
 import { robotoItalic } from "@/app/lib/roboto-roboto";
 import { Filters } from "./components/filters";
 
-async function fetchStudents() {
+async function fetchStudents(filters: { studentClass: string; studentRoll: string; studentSection: string }) {
     const res = await fetch(`${API_BASE_MONGO}/student`, {
-        cache: 'no-store',
-        next: { revalidate: 10 }
+        method: 'POST',
+        body: JSON.stringify({type: 'GET', ...filters})
     });
 
     if (!res.ok) {
@@ -20,10 +20,15 @@ async function fetchStudents() {
     return res.json();
 }
 
-export default async function StudentsPage() {
+export default async function StudentsPage({searchParams}: {searchParams?: Promise<{ [key: string]: string }>}) {
+    
+    const studentClass = (await searchParams)?.class || "";
+    const studentSection = (await searchParams)?.section || "";
+    const studentRoll = (await searchParams)?.roll || "";
+
     let students: Student[] = [];
     try {
-        students = await fetchStudents();
+        students = await fetchStudents({studentClass, studentRoll, studentSection});
     } catch {
         students = [];
     }
@@ -34,7 +39,7 @@ export default async function StudentsPage() {
             <div className="flex gap-2 width-full">
                 <div className="flex-1">
                     <h1 className={`text-4xl font-bold ${robotoItalic.className}`}>Students</h1>
-                    <h2 className={`text-2xl font-extralight`}>Total Records: 300</h2>
+                    <h2 className={`text-xl ${robotoItalic.className}`}>Total Records: 300</h2>
                     </div>
                 <div className="justify-self-end">
                     <Link href={`students/add`} className="text-blue-500 hover:text-blue-900 float-right">+ Add Student</Link>
