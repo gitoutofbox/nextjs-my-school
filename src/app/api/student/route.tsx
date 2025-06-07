@@ -6,11 +6,14 @@ import { NextResponse } from "next/server";
 async function getStudents(body: any) {
     const {studentClass, studentRoll, studentSection, studentName} = body;
     const filter: any = {};
+    
     if (studentClass) filter.class = Number(studentClass);
     if (studentRoll) filter.roll = studentRoll;
     if (studentSection) filter.section = studentSection;
-    if (studentName) filter.studentName = { $regex: studentName, $options: "i" };
+    if (studentName) filter.name = { $regex: studentName, $options: "i" };
+    // if (studentName) filter.name = { $regex: '.*' + studentName + '.*'};
     console.log('AAAAAAAAAAAAAA', filter)
+
     await mongoose.connect(MONGO_CONNECTION_STRING);
     const data = await Student.find(filter);
     

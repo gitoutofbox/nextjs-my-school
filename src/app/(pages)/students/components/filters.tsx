@@ -20,29 +20,44 @@ export function Filters() {
         studentName: ''
     });
     useEffect(() => {
-        const currentQuery = searchParams.get('query');
-        const updatedQuery = currentQuery 
-            ? `${currentQuery}&class=${filters.studentClass}&section=${filters.studentSection}` 
-            : `class=${filters.studentClass}&section=${filters.studentSection}`;
-            console.log(updatedQuery)
-        router.push(`/students?${updatedQuery}`);
+        if (
+            filters.studentName ||
+            filters.studentClass ||
+            filters.studentSection ||
+            filters.studentRoll
+        ) {
+            const params = new URLSearchParams();
+
+            if (filters.studentName) params.set('name', filters.studentName);
+            if (filters.studentClass) params.set('class', filters.studentClass);
+            if (filters.studentSection) params.set('section', filters.studentSection);
+            if (filters.studentRoll) params.set('roll', filters.studentRoll);
+
+            router.push(`/students?${params.toString()}`);
+        } else {
+            router.push(`/students`);
+        }
 
     }, [filters.studentClass, filters.studentRoll, filters.studentSection, filters.studentName]);
-    function handleChange(event: React.ChangeEvent<HTMLSelectElement>, field: string) {
-        setFilters((prevFilters: FiltersState) => ({
-            ...prevFilters,
-            [field]: event.target.value
-        }));
-        
-        
-    }
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: string) {
+            setFilters((prevFilters: FiltersState) => ({
+                ...prevFilters,
+                [field]: event.target.value
+            })); 
+        }
     return (
         <div className="flex gap-2 card-deeper py-4 px-6">
             <div className="flex-1">
-                <input type="text" placeholder="Search by name" className="input" />
+                <input
+                    type="text"
+                    placeholder="Search by name"
+                    className="input"
+                    onChange={e => handleChange(e, 'studentName')}
+                />
             </div>
             <div className="flex-1">
-                <input type="number" placeholder="Search by roll" className="input" />
+                <input type="number" placeholder="Search by roll" className="input" onChange={e => handleChange(e, 'studentRoll')} />
             </div>
             <div className="flex-1">
                 <select className="input" onChange={e => handleChange(e, 'studentClass')}>

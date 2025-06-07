@@ -7,7 +7,7 @@ import Image from "next/image";
 import { robotoItalic } from "@/app/lib/roboto-roboto";
 import { Filters } from "./components/filters";
 
-async function fetchStudents(filters: { studentClass: string; studentRoll: string; studentSection: string }) {
+async function fetchStudents(filters: { studentName: string; studentClass: string; studentRoll: string; studentSection: string }) {
     const res = await fetch(`${API_BASE_MONGO}/student`, {
         method: 'POST',
         body: JSON.stringify({type: 'GET', ...filters})
@@ -22,13 +22,14 @@ async function fetchStudents(filters: { studentClass: string; studentRoll: strin
 
 export default async function StudentsPage({searchParams}: {searchParams?: Promise<{ [key: string]: string }>}) {
     
+    const studentName = (await searchParams)?.name || "";
     const studentClass = (await searchParams)?.class || "";
     const studentSection = (await searchParams)?.section || "";
     const studentRoll = (await searchParams)?.roll || "";
 
     let students: Student[] = [];
     try {
-        students = await fetchStudents({studentClass, studentRoll, studentSection});
+        students = await fetchStudents({studentName, studentClass, studentRoll, studentSection});
     } catch {
         students = [];
     }
