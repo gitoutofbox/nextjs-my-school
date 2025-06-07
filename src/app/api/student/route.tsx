@@ -9,12 +9,12 @@ type StudentRequestBody = {
     studentRoll?: string | number;
     studentSection?: string;
     studentName?: string;
-    [key: string]: any;
+    [key: string]: unknown;
 };
 
 async function getStudents(body: StudentRequestBody) {
     const {studentClass, studentRoll, studentSection, studentName} = body;
-    const filter: Record<string, any> = {};
+    const filter: Record<string, unknown> = {};
     
     if (studentClass) filter.class = Number(studentClass);
     if (studentRoll) filter.roll = studentRoll;
