@@ -1,6 +1,6 @@
 'use client';
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type FiltersState = {
@@ -12,7 +12,6 @@ type FiltersState = {
 
 export function Filters() {
     const router = useRouter();
-    const searchParams = useSearchParams();
     const [filters, setFilters] = useState({
         studentClass: '',
         studentRoll: '',

@@ -35,7 +35,7 @@ export default function EditStudent() {
             }
         }
         fetchStudent(id);
-    }, [id]);
+    }, [id, reset, getValues]);
 
 
 

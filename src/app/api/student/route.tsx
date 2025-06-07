@@ -3,9 +3,18 @@ import { Student } from "@/app/lib/models/student";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-async function getStudents(body: any) {
+type StudentRequestBody = {
+    type: 'GET' | 'CREATE';
+    studentClass?: string | number;
+    studentRoll?: string | number;
+    studentSection?: string;
+    studentName?: string;
+    [key: string]: any;
+};
+
+async function getStudents(body: StudentRequestBody) {
     const {studentClass, studentRoll, studentSection, studentName} = body;
-    const filter: any = {};
+    const filter: Record<string, any> = {};
     
     if (studentClass) filter.class = Number(studentClass);
     if (studentRoll) filter.roll = studentRoll;
@@ -20,7 +29,7 @@ async function getStudents(body: any) {
     return NextResponse.json(data);
 }
 
-async function createStudent(body: any) {
+async function createStudent(body: StudentRequestBody) {
     await mongoose.connect(MONGO_CONNECTION_STRING);
     const student = new Student(body);
     await student.save();
